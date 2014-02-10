@@ -1,0 +1,23 @@
+# Basic makefile template
+# Author: Zhiyang Su
+
+CXX = g++
+OPT = -g -O0	# -lpthread
+RM = rm
+
+DEPENDENCIES =	
+
+OBJECTS =		# objects
+
+%.o: %.cpp %.h
+	$(CXX) $(OPT) -c -o $@ $<
+
+%.o: %.cpp
+	$(CXX) $(OPT) -c -o $@ $<
+
+$(OBJECTS): $(DEPENDENCIES)
+	$(CXX) $(OPT) -o $@ $<
+
+clean:
+	$(RM) -rf *.o *.gch $(OBJECTS)
+

@@ -1,0 +1,65 @@
+Variables Naming Rules
++. Variables only used in class should start with prefix "m_".
++. Variables only used in functions not start with prefix "m_", just in
+all_lower_case.
++. Variables name string should be splitted by '_' for each word.
++. STL Variables should be named with suffix of its type, start with "m_" if
+necessary, e.g. m_kvgid_kvg_map.
++. Name constant entities(both globally accessible and locally-only accessible
+) using ALL_UPPER_CASE.
++. Avoid continuous upper case letters. E.g. use MyIcqNumber instead of
+MyICQNumber.
+
+Class Naming Rules
++. All class should be written in dependent files(".h" and ".cpp").
++. All class name should be start with "C" to indicate that its a class, this
+rule is compatible with Windows Naming Style.
+
+Function Naming Rules
++. If the function want to get the attribute of the class, the function name
+should be start with "Get".
++. If the function want to set the attribute of the class, the function name
+should be start with "Set".
++. Function name should be CompactMixedCase.
+
+COMMENTS
++. Comments should be written before the functions.
+
+INDENTATION
++. Do not use tab characters. Use space characters for indentation.
++. Always start bracket("{") in a new line, never set bracket("{") at the end
+ of the line (Including try-catch, if-else, switch, function name, etc.).
++. Set each indent-width to 4 spaces.
+
+
+Example Code Style:
+namespace Ccs {
+using namespace std;
+using namespace amule;
+
+class CTaskThreadPool {
+private:
+    static CTaskThreadPool *g_singleinstance;
+    uint16 m_thread_num;
+    vector<pthread_t> m_pid_vector;
+    pthread_cond_t m_cond_mutex;
+    pthread_mutex_t m_task_mutex;
+    deque<CTask *> m_task_deque;
+
+    void CreatePool();
+    static void *ThreadStub(void *p) {
+        (static_cast<CTaskThreadPool *>(p))->ThreadFunc();
+        if (1) {
+            cout<<endl;
+        }
+        int a = m_thread_num * 4;
+    }
+    void *ThreadFunc();
+protected:
+    CTaskThreadPool();
+public:
+    virtual ~CTaskThreadPool();
+    CTaskThreadPool *Instance();
+    void AddTaskToQueue(CTask *);
+};
+}
