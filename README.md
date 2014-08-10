@@ -1,4 +1,4 @@
 utils
 =====
 
-A repository of many useful coding blocks.
+A repository of useful coding blocks.
