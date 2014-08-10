@@ -15,8 +15,8 @@ OBJECTS =		# objects
 %.o: %.cpp
 	$(CXX) $(OPT) -c -o $@ $<
 
-$(OBJECTS): $(DEPENDENCIES)
-	$(CXX) $(OPT) -o $@ $<
+$(OBJECTS): $(DEPENDENCIES)  # Add main.cpp if applicable
+	$(CXX) $(OPT) -o $@ $^
 
 clean:
 	$(RM) -rf *.o *.gch $(OBJECTS)
