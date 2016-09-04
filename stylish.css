@@ -1,0 +1,3 @@
+*:not([class*="icon"]):not(i) { 
+    font-family: "Monaco", "Microsoft Yahei" !important;
+}
